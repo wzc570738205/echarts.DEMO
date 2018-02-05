@@ -1,0 +1,1169 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>IN社区</title>
+	<link rel="stylesheet" href="index.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.2/echarts.js"></script>
+	<style>
+		*{padding:0;margin:0;box-sizing:border-box}.nav{width:100%;height:50px;background:#2d3d4d;display:flex;justify-content:flex-start;align-items:center;color:#fff}.logo{width:50px;height:50px}.project{width:100%;height:100px;background:#212330;display:flex;color:#fff;border-bottom:1px solid #0fa6e4}.project>div{width:20%;display:flex;flex-direction:column;justify-content:center;align-items:center}.project>div>p{font-size:30px}.project>div>span{font-size:20px;color:#a3a5b1}.project>div>span>sup{font-size:5px}.echart{width:100%;overflow:hidden;border-bottom:1px solid #0fa6e4;display:flex;background:#212330}.echart .chart{width:33.333%;display:flex;flex-direction:column;padding:10px 0}.echart .chart img{width:100%;border:1px solid #0fa6e4;border-top:none}.echart .chart>div{margin:0;border:2px solid #08394d;border-bottom:none;padding:5px}.echart .chart>div:nth-child(1){border-top:none}.linechart{width:100%;overflow:hidden;background:#212330;display:flex;color:#fff;border-top:1px solid #0fa6e4;border-bottom:1px solid #0fa6e4;flex-wrap:wrap}.linechart .chart{width:50%;padding:10px 0}.linechart .chart>div{margin:0;border:2px solid #08394d;padding:5px;border-bottom:none}.linechart .chart>div:nth-child(1){border-top:none}.linechartbottom .chart{width:33.333%;padding:10px 0}.linechartbottom{padding:0}
+	</style>
+</head>
+<body>
+	<div class="nav">
+		<img src="http://inshequ.cc/propertyMS/images/logo.jpg" alt="" class="logo">
+		IN社区物业管理系统
+	</div>
+
+    <div class="project">
+    	<div class="obj">
+    		<p>5</p>
+    		<span>已上线项目( 个 )</span>
+    	</div>
+    	<div class="obj">
+    		<p>10</p>
+    		<span>待上线项目( 个 )</span>
+    	</div>
+    	<div class="obj">
+    		<p>1343240</p>
+    		<span>在管面积( m<sup>2</sup> )</span>
+    	</div>
+    	<div class="obj">
+    		<p>9345</p>
+    		<span>在管户数( 户 )</span>
+    	</div>
+    	<div class="obj">
+    		<p>97345</p>
+    		<span>管理人数( 位 )</span>
+    	</div>
+    </div>
+
+    <div class="echart">
+    	<div class="chart">
+		      <div id="main" style="width: 100%;height:400px;"></div>
+		      <div id="main2" style="width: 100%;height:400px;"></div>	
+    	</div>
+    	<div class="chart">
+    		<div id="main3" style="width: 100%;height:400px;"></div>
+		      <div id="main4" style="width: 100%;height:400px;"></div>	
+    	</div>
+    	<div class="chart">
+    		<div id="main5" style="width: 100%;height:400px;"></div>
+		      <div id="main6" style="width: 100%;height:400px;"></div>
+    	</div>
+    	<!-- <div class="chart">
+    		<img src="管理人员(自有项目).png" alt="">
+    		<img src="管理人员(拓展项目).png" alt="">
+    	</div> -->
+    </div>
+   
+   <div class="linechart">
+   		<div class="chart">
+		      <div id="main7" style="width: 100%;height:400px;"></div>
+    	</div>
+    	<div class="chart">
+		      <div id="main8" style="width: 100%;height:400px;"></div>
+    	</div>
+    	
+   </div>
+   <div class="linechart linechartbottom">
+       	<div class="chart">
+		      <div id="main9" style="width: 100%;height:400px;"></div>
+    	</div>
+    	<div class="chart">
+		      <div id="main10" style="width: 100%;height:400px;"></div>
+    	</div>
+    	<div class="chart">
+		      <div id="main11" style="width: 100%;height:400px;"></div>
+    	</div>
+   </div>
+</body>
+</html>
+<script src="chat.js"></script>
+<script>
+	// 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        var myChart2 = echarts.init(document.getElementById('main2'));
+        var myChart3 = echarts.init(document.getElementById('main3'));
+        var myChart4 = echarts.init(document.getElementById('main4'));
+        var myChart5 = echarts.init(document.getElementById('main5'));
+        var myChart6 = echarts.init(document.getElementById('main6'));
+        var myChart7 = echarts.init(document.getElementById('main7'));
+        var myChart8 = echarts.init(document.getElementById('main8'));
+       var myChart9 = echarts.init(document.getElementById('main9'));
+        var myChart10 = echarts.init(document.getElementById('main10'));
+        var myChart11 = echarts.init(document.getElementById('main11'));
+
+        // 指定图表的配置项和数据
+        ///---------------------------------管理人员(拓展项目)-------------------------
+        option = {
+    title : {
+        text: '管理人员(拓展项目)',
+        subtext: '纯属虚构',
+        x:'center',
+         textStyle: {
+            color: '#fff'
+        }
+    },
+    backgroundColor: '#212330',
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        bottom: 'bottom',
+        data: ['维保部门','财务部门','管理部门','服务中心'],
+         textStyle: {
+            color: '#fff'
+        }
+    },
+    series : [
+        {
+            name: '人员组成',
+            type: 'pie',
+            radius : '50%',
+            center: ['50%', '50%'],
+            label: {
+                normal: {
+                    formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                    backgroundColor: '#212330',
+                    borderColor: '#aaa',
+                    borderWidth: 1,
+                    borderRadius: 4,
+                    // shadowBlur:3,
+                    // shadowOffsetX: 2,
+                    // shadowOffsetY: 2,
+                    // shadowColor: '#999',
+                    // padding: [0, 7],
+                    rich: {
+                        a: {
+                            color: '#fff',
+                            lineHeight: 22,
+                            align: 'center'
+                        },
+                        // abg: {
+                        //     backgroundColor: '#333',
+                        //     width: '100%',
+                        //     align: 'right',
+                        //     height: 22,
+                        //     borderRadius: [4, 4, 0, 0]
+                        // },
+                        hr: {
+                            borderColor: '#aaa',
+                            width: '100%',
+                            borderWidth: 0.5,
+                            height: 0
+                        },
+                        b: {
+                            fontSize: 16,
+                            lineHeight: 33
+                        },
+                        per: {
+                            color: '#eee',
+                            backgroundColor: '#334455',
+                            padding: [2, 4],
+                            borderRadius: 2
+                        }
+                    }
+                }
+            },
+            data:[
+                {value:231, name:'维保部门'},
+                {value:120, name:'财务部门'},
+                {value:358, name:'管理部门'},
+                {value:480, name:'服务中心'}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+        ///---------------------------------管理人员(自有项目)-------------------------
+
+option2 = {
+    title : {
+        text: '管理人员(自有项目)',
+        subtext: '纯属虚构',
+        x:'center',
+          textStyle: {
+            color: '#fff'
+        }
+    },
+    backgroundColor: '#212330',
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        bottom: 'bottom',
+        data: ['维保部门','财务部门','人力资源','管理部门','服务中心','采购部门'],
+          textStyle: {
+            color: '#fff'
+        }
+    },
+    series : [
+        {
+            name: '人员组成',
+            type: 'pie',
+            radius : '50%',
+            center: ['50%', '50%'],
+            label: {
+                normal: {
+                    formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                    backgroundColor: '#212330',
+                    borderColor: '#aaa',
+                    borderWidth: 1,
+                    borderRadius: 4,
+                    // shadowBlur:3,
+                    // shadowOffsetX: 2,
+                    // shadowOffsetY: 2,
+                    // shadowColor: '#999',
+                    // padding: [0, 7],
+                    rich: {
+                        a: {
+                            color: '#fff',
+                            lineHeight: 22,
+                            align: 'center'
+                        },
+                        // abg: {
+                        //     backgroundColor: '#333',
+                        //     width: '100%',
+                        //     align: 'right',
+                        //     height: 22,
+                        //     borderRadius: [4, 4, 0, 0]
+                        // },
+                        hr: {
+                            borderColor: '#fff',
+                            width: '100%',
+                            borderWidth: 0.5,
+                            height: 0
+                        },
+                        b: {
+                            fontSize: 16,
+                            lineHeight: 33
+                        },
+                        per: {
+                            color: '#fff',
+                            backgroundColor: '#334455',
+                            padding: [2, 4],
+                            borderRadius: 2
+                        }
+                    }
+                }
+            },
+            data:[
+                {value:231, name:'维保部门'},
+                {value:120, name:'财务部门'},
+                {value:50, name:'人力资源'},
+                {value:358, name:'管理部门'},
+                {value:480, name:'服务中心'},
+                {value:54, name:'采购部门'}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+
+        ///---------------------------------在管面积（万平方米）-------------------------
+
+option3 = {
+    title : {
+        text: '在管面积（万平方米）',
+        subtext: '纯属虚构',
+        x:'center',
+        textStyle: {
+            color: '#fff'
+        }
+    },
+    backgroundColor: '#212330',
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        bottom: 'bottom',
+        data: ['自有项目', '拓展项目'],
+        textStyle: {
+            color: '#fff'
+        }
+    },
+    series : [
+        {
+            name: '项目类型',
+            type: 'pie',
+            radius : '50%',
+            center: ['50%', '50%'],
+            label: {
+                normal: {
+                    formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                    backgroundColor: '#212330',
+                    borderColor: '#aaa',
+                    borderWidth: 1,
+                    borderRadius: 4,
+                    // shadowBlur:3,
+                    // shadowOffsetX: 2,
+                    // shadowOffsetY: 2,
+                    // shadowColor: '#999',
+                    // padding: [0, 7],
+                    rich: {
+                        a: {
+                            color: '#fff',
+                            lineHeight: 22,
+                            align: 'center'
+                        },
+                        // abg: {
+                        //     backgroundColor: '#333',
+                        //     width: '100%',
+                        //     align: 'right',
+                        //     height: 22,
+                        //     borderRadius: [4, 4, 0, 0]
+                        // },
+                        hr: {
+                            borderColor: '#aaa',
+                            width: '100%',
+                            borderWidth: 0.5,
+                            height: 0
+                        },
+                        b: {
+                            fontSize: 16,
+                            lineHeight: 33
+                        },
+                        per: {
+                            color: '#eee',
+                            backgroundColor: '#334455',
+                            padding: [2, 4],
+                            borderRadius: 2
+                        }
+                    }
+                }
+            },
+            data:[
+                {value:1350, name:'拓展项目'},
+                {value:1548, name:'自有项目'}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+        ///---------------------------------在管户数（户）-------------------------
+
+option4 = {
+    title : {
+        text: '在管户数（户）',
+        subtext: '纯属虚构',
+        x:'center',
+         textStyle: {
+            color: '#fff'
+        }
+    },
+    backgroundColor: '#212330',
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        bottom: 'bottom',
+        data: ['自有项目', '拓展项目'],
+         textStyle: {
+            color: '#fff'
+        }
+    },
+    series : [
+        {
+            name: '项目类型',
+            type: 'pie',
+            radius : '50%',
+            center: ['50%', '50%'],
+            label: {
+                normal: {
+                    formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                    backgroundColor: '#212330',
+                    borderColor: '#fff',
+                    borderWidth: 1,
+                    borderRadius: 4,
+                    // shadowBlur:3,
+                    // shadowOffsetX: 2,
+                    // shadowOffsetY: 2,
+                    // shadowColor: '#999',
+                    // padding: [0, 7],
+                    rich: {
+                        a: {
+                            color: '#fff',
+                            lineHeight: 22,
+                            align: 'center'
+                        },
+                        // abg: {
+                        //     backgroundColor: '#333',
+                        //     width: '100%',
+                        //     align: 'right',
+                        //     height: 22,
+                        //     borderRadius: [4, 4, 0, 0]
+                        // },
+                        hr: {
+                            borderColor: '#aaa',
+                            width: '100%',
+                            borderWidth: 0.5,
+                            height: 0
+                        },
+                        b: {
+                            fontSize: 16,
+                            lineHeight: 33
+                        },
+                        per: {
+                            color: '#eee',
+                            backgroundColor: '#334455',
+                            padding: [2, 4],
+                            borderRadius: 2
+                        }
+                    }
+                }
+            },
+            data:[
+                {value:35043, name:'拓展项目'},
+                {value:89876, name:'自有项目'}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+
+        ///---------------------------------物业收费率（百分比）-------------------------
+        var app1 = {}
+app1.title = '嵌套环形图';
+
+option5 = {
+    title : {
+        text: '物业收费率（百分比）',
+        subtext: '纯属虚构',
+        x:'center',
+        textStyle: {
+            color: '#fff'
+        }
+    },
+    backgroundColor: '#212330',
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        x: 'left',
+        data:['1-1单元','2-1单元','2-2单元','2-3单元','3-1单元','3-2单元','3-3单元','3-4单元'],
+        textStyle: {
+            color: '#fff'
+        }
+    },
+    series: [
+        {
+            name:'缴费占比',
+            type:'pie',
+            selectedMode: 'single',
+            radius: [0, '30%'],
+            center: ['55%', '60%'],
+
+            label: {
+                normal: {
+                    position: 'inner'
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data:[
+                {value:335, name:'一号楼', selected:true},
+                {value:679, name:'二号楼'},
+                {value:1548, name:'三号楼'}
+            ]
+        },
+        {
+            name:'缴费占比',
+            type:'pie',
+            radius: ['30%', '50%'],
+            center: ['55%', '60%'],
+
+            label: {
+                normal: {
+                    formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                    backgroundColor: '#212330',
+                    borderColor: '#aaa',
+                    borderWidth: 1,
+                    borderRadius: 4,
+                    // shadowBlur:3,
+                    // shadowOffsetX: 2,
+                    // shadowOffsetY: 2,
+                    // shadowColor: '#999',
+                    // padding: [0, 7],
+                    rich: {
+                        a: {
+                            color: '#fff',
+                            lineHeight: 22,
+                            align: 'center'
+                        },
+                        // abg: {
+                        //     backgroundColor: '#333',
+                        //     width: '100%',
+                        //     align: 'right',
+                        //     height: 22,
+                        //     borderRadius: [4, 4, 0, 0]
+                        // },
+                        hr: {
+                            borderColor: '#aaa',
+                            width: '100%',
+                            borderWidth: 0.5,
+                            height: 0
+                        },
+                        b: {
+                            fontSize: 16,
+                            lineHeight: 33
+                        },
+                        per: {
+                            color: '#eee',
+                            backgroundColor: '#334455',
+                            padding: [2, 2],
+                            borderRadius: 2
+                        }
+                    }
+                }
+            },
+            data:[
+                {value:335, name:'1-1单元'},
+                {value:310, name:'2-1单元'},
+                {value:234, name:'2-2单元'},
+                {value:135, name:'2-3单元'},
+                {value:1048, name:'3-1单元'},
+                {value:251, name:'3-2单元'},
+                {value:147, name:'3-3单元'},
+                {value:102, name:'3-4单元'}
+            ]
+        }
+    ]
+};
+        ///---------------------------------每月缴费欠费趋势-------------------------
+
+     option6 = {
+    title: {
+        text: '每月缴费欠费趋势',
+        subtext: '纯属虚构',
+        textStyle: {
+            color: '#fff'
+        }
+    },
+    backgroundColor: '#212330',
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['缴费','欠费'],
+        textStyle: {
+            color: '#fff'
+        }
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            dataZoom: {
+                yAxisIndex: 'none'
+            },
+            dataView: {readOnly: false},
+            magicType: {type: ['line', 'bar']},
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    xAxis:  {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2017-1月','2017-2月','2017-3月','2017-4月','2017-5月','2017-6月','2017-7月'],
+        nameTextStyle: {
+            color: '#fff'
+        },
+        axisLine:{
+            lineStyle:{
+            color: '#fff'
+
+        }}
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} 万元',
+
+        },
+        axisLine:{
+            lineStyle:{
+            color: '#fff'
+
+        }}
+    },
+    series: [
+        {
+            name:'缴费',
+            type:'line',
+            data:[11, 11, 15, 13, 12, 13, 10],
+            textStyle: {
+            color: '#fff'
+            },
+            markPoint: {
+                data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值'}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: '平均值'}
+                ]
+            }
+        },
+        {
+            name:'欠费',
+            type:'line',
+            data:[-5, -7, -9, -3, -6, -7, -4],
+textStyle: {
+            color: '#fff'
+        },
+            markPoint: {
+                data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值'}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: '平均值'}
+                ]
+            }
+        }
+    ]
+};
+
+        ///---------------------------------报事报修完成率-------------------------
+
+   var posList7 = [
+    'left', 'right', 'top', 'bottom',
+    'inside',
+    'insideTop', 'insideLeft', 'insideRight', 'insideBottom',
+    'insideTopLeft', 'insideTopRight', 'insideBottomLeft', 'insideBottomRight'
+];
+var app7 = {}
+app7.configParameters = {
+    rotate: {
+        min: -90,
+        max: 90
+    },
+    align: {
+        options: {
+            left: 'left',
+            center: 'center',
+            right: 'right'
+        }
+    },
+    verticalAlign: {
+        options: {
+            top: 'top',
+            middle: 'middle',
+            bottom: 'bottom'
+        }
+    },
+    position: {
+        options: echarts.util.reduce(posList7, function (map, pos) {
+            map[pos] = pos;
+            return map;
+        }, {})
+    },
+    distance: {
+        min: 0,
+        max: 100
+    }
+};
+
+app7.config = {
+    rotate: 90,
+    align: 'left',
+    verticalAlign: 'middle',
+    position: 'insideBottom',
+    distance: 15,
+    onChange: function () {
+        var labelOption = {
+            normal: {
+                rotate: app7.config.rotate,
+                align: app7.config.align,
+                verticalAlign: app7.config.verticalAlign,
+                position: app7.config.position,
+                distance: app7.config.distance
+            }
+        };
+        myChart.setOption({
+            series: [{
+                label: labelOption7
+            }, {
+                label: labelOption7
+            }, {
+                label: labelOption7
+            }, {
+                label: labelOption7
+            }]
+        });
+    }
+};
+
+
+var labelOption7 = {
+    normal: {
+        show: true,
+        position: app7.config.position,
+        distance: app7.config.distance,
+        align: app7.config.align,
+        verticalAlign: app7.config.verticalAlign,
+        rotate: app7.config.rotate,
+        formatter: '{c}  {name|{a}}',
+        fontSize: 16,
+        rich: {
+            name: {
+                textBorderColor: '#fff'
+            }
+        }
+    }
+};
+
+option7 = {
+    title : {
+        text: '报事报修完成率',
+        subtext: '纯属虚构',
+        x:'center',
+        textStyle: {
+            color: '#fff'
+        }
+    },
+    color: ['#003366', '#4cabce'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: 'bottom',
+        data: ['报修', '完成'],
+        textStyle: {
+            color: '#fff'
+        }
+    },
+    toolbox: {
+        show: true,
+        orient: 'vertical',
+        left: 'right',
+        top: 'center',
+        feature: {
+            mark: {show: true},
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    calculable: true,
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: {show: false},
+            data: ['2017-01', '2017-02', '2017-03', '2017-04', '2017-05', '2017-06', '2017-07', '2017-08', '2017-09', '2017-10', '2017-11', '2017-12']
+        , axisLine:{
+            lineStyle:{
+            color: '#fff'
+
+        }}
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+             axisLine:{
+            lineStyle:{
+            color: '#fff'
+
+        }}
+        }
+    ],
+    series: [
+        {
+            name: '报修',
+            type: 'bar',
+            barGap: 0,
+            label: labelOption7,
+            data: [32, 33, 30, 35, 39, 32, 33, 30, 35, 39, 25, 29]
+        },
+        {
+            name: '完成',
+            type: 'bar',
+            label: labelOption7,
+            data: [30, 30, 30, 29, 35, 30, 30, 25, 32, 36, 20, 25]
+        }
+    ]
+};
+
+        ///---------------------------------设备故障修复率-------------------------
+
+var posList8 = [
+    'left', 'right', 'top', 'bottom',
+    'inside',
+    'insideTop', 'insideLeft', 'insideRight', 'insideBottom',
+    'insideTopLeft', 'insideTopRight', 'insideBottomLeft', 'insideBottomRight'
+];
+var app8 = {}
+app8.configParameters = {
+    rotate: {
+        min: -90,
+        max: 90
+    },
+    align: {
+        options: {
+            left: 'left',
+            center: 'center',
+            right: 'right'
+        }
+    },
+    verticalAlign: {
+        options: {
+            top: 'top',
+            middle: 'middle',
+            bottom: 'bottom'
+        }
+    },
+    position: {
+        options: echarts.util.reduce(posList8, function (map, pos) {
+            map[pos] = pos;
+            return map;
+        }, {})
+    },
+    distance: {
+        min: 0,
+        max: 100
+    }
+};
+
+app8.config = {
+    rotate: 90,
+    align: 'left',
+    verticalAlign: 'middle',
+    position: 'insideBottom',
+    distance: 15,
+    onChange: function () {
+        var labelOption = {
+            normal: {
+                rotate: app8.config.rotate,
+                align: app8.config.align,
+                verticalAlign: app8.config.verticalAlign,
+                position: app8.config.position,
+                distance: app8.config.distance
+            }
+        };
+        myChart.setOption({
+            series: [{
+                label: labelOption
+            }, {
+                label: labelOption
+            }, {
+                label: labelOption
+            }, {
+                label: labelOption
+            }]
+        });
+    }
+};
+
+
+var labelOption8 = {
+    normal: {
+        show: true,
+        position: app8.config.position,
+        distance: app8.config.distance,
+        align: app8.config.align,
+        verticalAlign: app8.config.verticalAlign,
+        rotate: app8.config.rotate,
+        formatter: '{c}  {name|{a}}',
+        fontSize: 16,
+        rich: {
+            name: {
+                textBorderColor: '#fff'
+            }
+        }
+    }
+};
+
+option8 = {
+    title : {
+        text: '设备故障修复率',
+        subtext: '纯属虚构',
+        x:'center',
+         textStyle: {
+            color: '#fff'
+        }
+    },
+    backgroundColor: '#212330',
+    color: ['#003366', '#4cabce'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: 'bottom',
+        data: ['故障', '完成'],
+         textStyle: {
+            color: '#fff'
+        }
+    },
+    toolbox: {
+        show: true,
+        orient: 'vertical',
+        left: 'right',
+        top: 'center',
+        feature: {
+            mark: {show: true},
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    calculable: true,
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: {show: false},
+            data: ['2017-01', '2017-02', '2017-03', '2017-04', '2017-05', '2017-06', '2017-07', '2017-08', '2017-09', '2017-10', '2017-11', '2017-12']
+        ,axisLine:{
+            lineStyle:{
+            color: '#fff'
+
+        }}}
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            axisLine:{
+            lineStyle:{
+            color: '#fff'
+
+        }}
+        }
+    ],
+    series: [
+        {
+            name: '故障',
+            type: 'bar',
+            barGap: 0,
+            label: labelOption8,
+            data: [15, 20, 18, 10, 23, 25, 15, 16, 18, 9, 13, 11]
+        },
+        {
+            name: '完成',
+            type: 'bar',
+            label: labelOption8,
+            data: [15, 18, 17, 10, 20, 22, 15, 15, 18, 9, 12, 11]
+        }
+    ]
+};
+//-------------------------------------------业主投诉（-个）-------------------------------
+option9 = {
+    title : {
+        text: '业主投诉（个）',
+        subtext: '纯属虚构',
+        x:'center',
+        textStyle: {
+            color: '#fff'
+        }
+    },
+    backgroundColor: '#212330',
+    xAxis: {
+        type: 'category',
+        data: ['2017-01', '2017-02', '2017-03', '2017-04', '2017-05', '2017-06', '2017-07', '2017-08', '2017-09', '2017-10', '2017-11', '2017-12']
+   ,axisLine:{
+    lineStyle:{
+        color: '#fff'
+    }
+},
+    textStyle: {
+            color: '#fff'
+        } },
+    yAxis: {
+        type: 'value',axisLine:{
+    lineStyle:{
+        color: '#fff'
+    }
+}
+    },
+    series: [{
+      textStyle: {
+            color: '#fff'
+            },
+        data: [
+            {value:15, label:{show:true}},
+            {value:23, label:{show:true}},
+            {value:4, label:{show:true}},
+            {value:9, label:{show:true}},
+            {value:7, label:{show:true}},
+            {value:12, label:{show:true}},
+            {value:14, label:{show:true}},
+            {value:7, label:{show:true}},
+            {value:19, label:{show:true}},
+            {value:20, label:{show:true}},
+            {value:19, label:{show:true}},
+            {value:21, label:{show:true}}
+        ],
+        type: 'line',
+        smooth: true,
+
+    }]
+};
+//-------------------------------------业主满意度（百分比）--------------------------
+option10 = {
+    title : {
+        text: '业主满意度（百分比）',
+        subtext: '纯属虚构',
+        x:'center',
+         textStyle: {
+            color: '#fff'
+        }
+    },
+    backgroundColor: '#212330',
+    xAxis: {
+        type: 'category',
+        data: ['2017-01', '2017-02', '2017-03', '2017-04', '2017-05', '2017-06', '2017-07', '2017-08', '2017-09', '2017-10', '2017-11', '2017-12']
+    ,
+axisLine:{
+    lineStyle:{
+        color: '#fff'
+    }
+}},
+    yAxis: {
+        type: 'value',
+        axisLine:{
+    lineStyle:{
+        color: '#fff'
+    }
+}
+    },
+    series: [{
+        data: [
+            {value:80, label:{show:true}},
+            {value:78, label:{show:true}},
+            {value:90, label:{show:true}},
+            {value:60, label:{show:true}},
+            {value:70, label:{show:true}},
+            {value:75, label:{show:true}},
+            {value:65, label:{show:true}},
+            {value:80, label:{show:true}},
+            {value:85, label:{show:true}},
+            {value:95, label:{show:true}},
+            {value:58, label:{show:true}},
+            {value:69, label:{show:true}}
+        ],
+        type: 'line',
+        smooth: true,
+         textStyle: {
+            color: '#fff'
+        }
+    }]
+};   
+
+option11 = {
+    title : {
+        text: '物业收费率（百分比）',
+        subtext: '纯属虚构',
+        x:'center', textStyle: {
+            color: '#fff'
+        }
+    },
+    backgroundColor: '#212330',
+    xAxis: {
+        type: 'category',
+        data: ['2017-01', '2017-02', '2017-03', '2017-04', '2017-05', '2017-06', '2017-07', '2017-08', '2017-09', '2017-10', '2017-11', '2017-12']
+    ,axisLine:{
+    lineStyle:{
+        color: '#fff'
+    }
+}},
+    yAxis: {
+        type: 'value',axisLine:{
+    lineStyle:{
+        color: '#fff'
+    }
+}
+    },
+    series: [{
+        data: [
+            {value:100, label:{show:true}},
+            {value:98, label:{show:true}},
+            {value:100, label:{show:true}},
+            {value:100, label:{show:true}},
+            {value:100, label:{show:true}},
+            {value:100, label:{show:true}},
+            {value:100, label:{show:true}},
+            {value:100, label:{show:true}},
+            {value:100, label:{show:true}},
+            {value:97, label:{show:true}},
+            {value:100, label:{show:true}},
+            {value:100, label:{show:true}}],
+        type: 'line',
+        smooth: true
+    }]
+};
+
+// 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        myChart2.setOption(option2);
+        myChart3.setOption(option3);
+        myChart4.setOption(option4);
+        myChart5.setOption(option5);
+        myChart6.setOption(option6);
+        myChart7.setOption(option7);
+        myChart8.setOption(option8);
+        myChart9.setOption(option9);
+        myChart10.setOption(option10);
+        myChart11.setOption(option11);
+        window.onresize = function(){
+            myChart.resize();
+            myChart2.resize();
+            myChart3.resize();
+            myChart4.resize();
+            myChart5.resize();
+            myChart6.resize();
+            myChart7.resize();
+            myChart8.resize();
+            myChart9.resize();
+            myChart10.resize();
+            myChart11.resize();
+        }
+</script>
